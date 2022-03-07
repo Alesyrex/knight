@@ -1,5 +1,7 @@
 package com.epam.knight.controller;
 
+import com.epam.knight.view.MainMenuView;
+
 /**
  * Launches main menu with {@link KnightController}.
  */
@@ -11,7 +13,12 @@ public class KnightApplication {
     }
 
     private void start() {
-        throw new UnsupportedOperationException("You need to implement this method");
+        MainMenuView menu = new MainMenuView();
+        KnightController controller = new KnightController();
+        do {
+            menu.mainMenu();
+            controller.operationsKnight(menu.selectMainMenu());
+        } while (controller.isRun());
     }
 
 }

@@ -13,7 +13,7 @@ public class KnightGenerator {
      * @return knight
      */
     public static Knight generateKnight() {
-        throw new UnsupportedOperationException("You need to implement this method");
+        return new Knight();
     }
 
 }
