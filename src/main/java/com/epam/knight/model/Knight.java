@@ -15,7 +15,6 @@ public class Knight {
     private int protection;
     private int ammunitionCount;
     private boolean fullAmmunition;
-    // TODO add fields for knight stats
 
     public Knight() {
         this.ammunition = new Ammunition[MAX_AMMUNITION];

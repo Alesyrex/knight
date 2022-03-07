@@ -5,8 +5,10 @@ import com.epam.knight.model.Knight;
 /**
  * Generates knight with some ammunition.
  */
-public class KnightGenerator {
+public final class KnightGenerator {
 
+    private KnightGenerator() {
+    }
     /**
      * Use it to quickly generate knight
      *
