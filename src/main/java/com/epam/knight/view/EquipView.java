@@ -11,7 +11,7 @@ public class EquipView {
     public static final String AMMUNITION_LIST_IS_FULL = "Ammunition list is full!";
     public static final String WEIGHT = "weight";
     public static final String COST = "cost";
-    public static final String INPUT = "Input ";
+    public static final String INPUT_STATS_FORMAT = "Input %s %s:\n";
     public static final String INCORRECT_INPUT = "Incorrect input.Try again:";
     public static final String EQUIP_MENU = "What kind of ammunition do you want to equip?\n" +
                                              "1. Sword\n2. Helmet\nChoose option:";
@@ -42,7 +42,7 @@ public class EquipView {
         String[] statsList = {WEIGHT, COST, type.getFeature()};
 
         for (int i = 0; i < STATS_COUNT; ++i) {
-            System.out.println(INPUT + type.getName() + " " + statsList[i] + ":");
+            System.out.printf(INPUT_STATS_FORMAT, type.getName(), statsList[i]);
             stats[i] = scanner.nextInt();
         }
         return stats;

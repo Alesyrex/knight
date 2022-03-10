@@ -1,7 +1,7 @@
 package com.epam.knight.model.ammunition;
 
 public class Sword extends AbstractAmmunitionForAttack {
-    public static final String SWORD_TO_STRING = "Sword{damage=";
+    public static final String SWORD_TO_STRING = "Sword{damage=%d, weight=%d, cost=%d}";
 
     public Sword() {
 
@@ -13,7 +13,6 @@ public class Sword extends AbstractAmmunitionForAttack {
 
     @Override
     public String toString() {
-        return SWORD_TO_STRING + this.getDamage() + WEIGHT_TO_STRING + this.getWeight() +
-                COST_TO_STRING + this.getCost() + BRACE_TO_STRING;
+        return String.format(SWORD_TO_STRING, this.getDamage(),this.getWeight(),this.getCost());
     }
 }
