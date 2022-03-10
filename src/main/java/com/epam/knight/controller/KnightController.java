@@ -31,6 +31,7 @@ public class KnightController {
     private boolean run = true;
 
     public void operationsKnight(int choice) {
+
         switch (choice) {
             case CASE_ONE :
                 knightStats();
@@ -70,13 +71,13 @@ public class KnightController {
                 default:
                     break;
             }
+            manager.setKnightStats();
         } else {
             equip.printFullAmmunition();
         }
     }
 
     public void knightStats() {
-        manager.setKnightStats();
         KnightView knightStats = new KnightView();
         knightStats.printKnightStats(knight);
     }

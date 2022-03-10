@@ -19,8 +19,6 @@ public abstract class AbstractAmmunitionForAttack implements Ammunition {
         return damage;
     }
 
-    public abstract String getName();
-
     @Override
     public int getWeight() {
         return weight;

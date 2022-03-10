@@ -19,8 +19,6 @@ public abstract class AbstractAmmunitionForProtection implements Ammunition {
         return protection;
     }
 
-    public abstract String getName();
-
     @Override
     public int getWeight() {
         return weight;
