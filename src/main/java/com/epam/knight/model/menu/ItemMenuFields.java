@@ -1,8 +1,8 @@
 package com.epam.knight.model.menu;
 
 public enum ItemMenuFields {
-    COST_MENU_POINT(ItemMenuFields.Constants.ID_ONE, ItemMenuFields.Constants.PRINT_COST),
-    WEIGHT_MENU_POINT(ItemMenuFields.Constants.ID_TWO, ItemMenuFields.Constants.PRINT_WEIGHT);
+    COST_MENU_POINT(Constants.ID_ONE, Constants.PRINT_COST),
+    WEIGHT_MENU_POINT(Constants.ID_TWO, Constants.PRINT_WEIGHT);
 
     private final int id;
     private final String textField;

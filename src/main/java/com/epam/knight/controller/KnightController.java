@@ -41,6 +41,19 @@ public class KnightController {
         }
     }
 
+    public void knightStats() {
+        KnightView knightStats = new KnightView();
+        knightStats.printKnightStats(knight);
+    }
+
+    public void showAmmunition() {
+        for (Ammunition item : knight.getAmmunition()) {
+            if (item != null) {
+                itemShow.printAmmunition(item);
+            }
+        }
+    }
+
     public void equipAmmunition() {
         EquipView equip = new EquipView();
         if (!knight.isFullAmmunition()) {
@@ -56,19 +69,6 @@ public class KnightController {
             manager.setKnightStats();
         } else {
             equip.printFullAmmunition();
-        }
-    }
-
-    public void knightStats() {
-        KnightView knightStats = new KnightView();
-        knightStats.printKnightStats(knight);
-    }
-
-    public void showAmmunition() {
-        for (Ammunition item : knight.getAmmunition()) {
-            if (item != null) {
-                itemShow.printAmmunition(item);
-            }
         }
     }
 
