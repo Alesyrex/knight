@@ -8,6 +8,7 @@ public class MainMenuView {
     public static final String MAIN_MENU_PRINT_FORMAT = "Main menu:\n%d. %s\n%d. %s\n" +
                                            "%d. %s\n%d. %s\n%d. %s\n%d. %s\nChoose option:\n";
     public static final String INCORRECT_INPUT = "Incorrect input.Try again:";
+    public static final String BYE = "Bye!";
 
     public void mainMenu() {
         System.out.printf(MAIN_MENU_PRINT_FORMAT,
@@ -31,5 +32,9 @@ public class MainMenuView {
             }
         } while (choice < minMenuOption || choice > maxMenuOption);
         return choice;
+    }
+
+    public void printBye() {
+        System.out.println(BYE);
     }
 }

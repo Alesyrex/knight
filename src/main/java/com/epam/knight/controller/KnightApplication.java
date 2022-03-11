@@ -19,6 +19,7 @@ public class KnightApplication {
             menu.mainMenu();
             controller.operationsKnight(menu.selectMainMenu());
         } while (controller.isRun());
+        menu.printBye();
     }
 
 }

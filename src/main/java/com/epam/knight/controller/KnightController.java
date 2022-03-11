@@ -37,7 +37,7 @@ public class KnightController {
         } else if (choice == MainMenuFields.SEARCH_ITEM_MENU_POINT.getId()) {
             searchAmmunition();
         } else {
-            run = false;
+            exitProgram();
         }
     }
 
@@ -118,6 +118,9 @@ public class KnightController {
         }
     }
 
+    public void exitProgram() {
+        run = false;
+    }
     public boolean isRun() {
         return run;
     }
