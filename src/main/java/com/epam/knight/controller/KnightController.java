@@ -6,6 +6,8 @@ import com.epam.knight.model.ammunition.Ammunition;
 import com.epam.knight.model.ammunition.AmmunitionType;
 import com.epam.knight.model.ammunition.CostComparator;
 import com.epam.knight.model.ammunition.WeightComparator;
+import com.epam.knight.model.menu.ItemMenuFields;
+import com.epam.knight.model.menu.MainMenuFields;
 import com.epam.knight.view.AmmunitionView;
 import com.epam.knight.view.EquipView;
 import com.epam.knight.view.KnightView;
@@ -16,14 +18,6 @@ import java.util.Comparator;
  * Handles main menu and all operations with knight.
  */
 public class KnightController {
-    public static final int CASE_ONE = 1;
-    public static final int CASE_TWO = 2;
-    public static final int CASE_THREE = 3;
-    public static final int CASE_FOUR = 4;
-    public static final int CASE_FIVE = 5;
-    public static final String COST = "cost";
-    public static final String WEIGHT = "weight";
-
     private final AmmunitionGenerator newItem = new AmmunitionGenerator();
     private final Knight knight = KnightGenerator.generateKnight();
     private final KnightAmmunitionManager manager = new KnightAmmunitionManager(knight);
@@ -32,25 +26,18 @@ public class KnightController {
 
     public void operationsKnight(int choice) {
 
-        switch (choice) {
-            case CASE_ONE :
-                knightStats();
-                break;
-            case CASE_TWO :
-                showAmmunition();
-                break;
-            case CASE_THREE :
-                equipAmmunition();
-                break;
-            case CASE_FOUR :
-                sortAmmunition();
-                break;
-            case CASE_FIVE :
-                searchAmmunition();
-                break;
-            default :
-                run = false;
-                break;
+        if (choice == MainMenuFields.KNIGHT_STATS_MENU_POINT.getId()) {
+            knightStats();
+        } else if (choice == MainMenuFields.SHOW_ITEM_MENU_POINT.getId()) {
+            showAmmunition();
+        } else if (choice == MainMenuFields.EQUIP_ITEM_MENU_POINT.getId()) {
+            equipAmmunition();
+        } else if (choice == MainMenuFields.SORT_ITEM_MENU_POINT.getId()) {
+            sortAmmunition();
+        } else if (choice == MainMenuFields.SEARCH_ITEM_MENU_POINT.getId()) {
+            searchAmmunition();
+        } else {
+            run = false;
         }
     }
 
@@ -59,17 +46,12 @@ public class KnightController {
         if (!knight.isFullAmmunition()) {
             Ammunition item;
             equip.equipMenu();
-            switch (equip.selectEquipMenu()) {
-                case SWORD:
-                    item = newItem.generateAmmunition(AmmunitionType.SWORD, equip.inputStats(AmmunitionType.SWORD));
-                    manager.equipAmmunitionToKnight(item);
-                    break;
-                case HELMET:
-                    item = newItem.generateAmmunition(AmmunitionType.HELMET, equip.inputStats(AmmunitionType.HELMET));
-                    manager.equipAmmunitionToKnight(item);
-                    break;
-                default:
-                    break;
+            if (equip.selectEquipMenu() == AmmunitionType.SWORD.getId()) {
+                item = newItem.generateAmmunition(AmmunitionType.SWORD, equip.inputStats(AmmunitionType.SWORD));
+                manager.equipAmmunitionToKnight(item);
+            } else {
+                item = newItem.generateAmmunition(AmmunitionType.HELMET, equip.inputStats(AmmunitionType.HELMET));
+                manager.equipAmmunitionToKnight(item);
             }
             manager.setKnightStats();
         } else {
@@ -92,43 +74,33 @@ public class KnightController {
 
     public void sortAmmunition() {
         itemShow.printSortMenu();
-        switch (itemShow.choiceOption()) {
-            case CASE_ONE :
-                Comparator<Ammunition> costComparator = new CostComparator();
-                manager.sortKnightAmmunition(costComparator);
-                showAmmunition();
-                break;
-            case CASE_TWO :
-                Comparator<Ammunition> weightComparator = new WeightComparator();
-                manager.sortKnightAmmunition(weightComparator);
-                showAmmunition();
-                break;
-            default :
-                break;
+        if (itemShow.choiceOption() == ItemMenuFields.COST_MENU_POINT.getId()) {
+            Comparator<Ammunition> costComparator = new CostComparator();
+            manager.sortKnightAmmunition(costComparator);
+            showAmmunition();
+        } else {
+            Comparator<Ammunition> weightComparator = new WeightComparator();
+            manager.sortKnightAmmunition(weightComparator);
+            showAmmunition();
         }
     }
 
     public void searchAmmunition() {
         itemShow.printSearchMenu();
-        switch (itemShow.choiceOption()) {
-            case CASE_ONE :
-                showSearchField(COST);
-                break;
-            case CASE_TWO :
-                showSearchField(WEIGHT);
-                break;
-            default :
-                break;
+        if (itemShow.choiceOption() == ItemMenuFields.COST_MENU_POINT.getId()) {
+            showSearchField(ItemMenuFields.COST_MENU_POINT);
+        } else {
+            showSearchField(ItemMenuFields.WEIGHT_MENU_POINT);
         }
     }
 
-    public void showSearchField(String field) {
+    public void showSearchField(ItemMenuFields field) {
         int minRange;
-        itemShow.printInputMin(field);
+        itemShow.printInputMin(ItemMenuFields.COST_MENU_POINT.getTextField());
         minRange = itemShow.setRange();
 
         int maxRange;
-        itemShow.printInputMax(field);
+        itemShow.printInputMax(ItemMenuFields.WEIGHT_MENU_POINT.getTextField());
         maxRange = itemShow.setRange();
 
         if (minRange > maxRange) {
@@ -137,10 +109,10 @@ public class KnightController {
             minRange = temp;
         }
         for (Ammunition item : knight.getAmmunition()) {
-            if (field.equals(COST)) {
+            if (field == ItemMenuFields.COST_MENU_POINT) {
                 itemShow.printAmmunition(manager.searchCostField(item, minRange, maxRange));
             }
-            if (field.equals(WEIGHT)) {
+            if (field == ItemMenuFields.WEIGHT_MENU_POINT) {
                 itemShow.printAmmunition(manager.searchWeightField(item, minRange, maxRange));
             }
         }

@@ -4,17 +4,22 @@ package com.epam.knight.model.ammunition;
  * Lists different types of ammunition.
  */
 public enum AmmunitionType {
-    SWORD("sword", "damage"),
-    HELMET("helmet", "protection");
+    SWORD(Constants.ID_ONE, Constants.STRING_SWORD, Constants.DAMAGE),
+    HELMET(Constants.ID_TWO, Constants.STRING_HELMET, Constants.PROTECTION);
 
+    private final int id;
     private final String name;
     private final String feature;
 
-    AmmunitionType(String name, String feature) {
+    AmmunitionType(int id, String name, String feature) {
+        this.id = id;
         this.name = name;
         this.feature = feature;
     }
 
+    public int getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
@@ -22,5 +27,14 @@ public enum AmmunitionType {
 
     public String getFeature() {
         return feature;
+    }
+
+    private static class Constants {
+        public static final String STRING_SWORD = "sword";
+        public static final String STRING_HELMET = "helmet";
+        public static final String DAMAGE = "damage";
+        public static final String PROTECTION = "protection";
+        public static final int ID_ONE = 1;
+        public static final int ID_TWO = 2;
     }
 }

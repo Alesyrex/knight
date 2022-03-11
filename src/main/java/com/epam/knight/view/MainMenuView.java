@@ -1,29 +1,35 @@
 package com.epam.knight.view;
 
+import com.epam.knight.model.menu.MainMenuFields;
+
 import java.util.Scanner;
 
 public class MainMenuView {
-    public static final int MIN_MENU_OPTION = 1;
-    public static final int MAX_MENU_OPTION = 6;
-    public static final String MAIN_MENU = "Main menu:\n1. Print knight stats\n2. Show ammunition\n" +
-                                           "3. Equip ammunition\n4. Sort ammunition\n" +
-                                           "5. Search ammunition\n6. Exit\nChoose option:";
+    public static final String MAIN_MENU_PRINT_FORMAT = "Main menu:\n%d. %s\n%d. %s\n" +
+                                           "%d. %s\n%d. %s\n%d. %s\n%d. %s\nChoose option:\n";
     public static final String INCORRECT_INPUT = "Incorrect input.Try again:";
 
-
     public void mainMenu() {
-        System.out.println(MAIN_MENU);
+        System.out.printf(MAIN_MENU_PRINT_FORMAT,
+                MainMenuFields.KNIGHT_STATS_MENU_POINT.getId(), MainMenuFields.KNIGHT_STATS_MENU_POINT.getTextField(),
+                MainMenuFields.SHOW_ITEM_MENU_POINT.getId(),MainMenuFields.SHOW_ITEM_MENU_POINT.getTextField(),
+                MainMenuFields.EQUIP_ITEM_MENU_POINT.getId(),MainMenuFields.EQUIP_ITEM_MENU_POINT.getTextField(),
+                MainMenuFields.SORT_ITEM_MENU_POINT.getId(),MainMenuFields.SORT_ITEM_MENU_POINT.getTextField(),
+                MainMenuFields.SEARCH_ITEM_MENU_POINT.getId(),MainMenuFields.SEARCH_ITEM_MENU_POINT.getTextField(),
+                MainMenuFields.EXIT_MENU_POINT.getId(),MainMenuFields.EXIT_MENU_POINT.getTextField());
     }
 
     public int selectMainMenu() {
         int choice;
+        int minMenuOption = MainMenuFields.KNIGHT_STATS_MENU_POINT.getId();
+        int maxMenuOption = MainMenuFields.EXIT_MENU_POINT.getId();
         Scanner scanner = new Scanner(System.in);
         do {
             choice = scanner.nextInt();
-            if (choice < MIN_MENU_OPTION || choice > MAX_MENU_OPTION) {
+            if (choice < minMenuOption || choice > maxMenuOption) {
                 System.out.println(INCORRECT_INPUT);
             }
-        } while (choice < MIN_MENU_OPTION || choice > MAX_MENU_OPTION);
+        } while (choice < minMenuOption || choice > maxMenuOption);
         return choice;
     }
 }

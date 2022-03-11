@@ -3,13 +3,12 @@ package com.epam.knight.view;
 import com.epam.knight.model.ammunition.AbstractAmmunitionForAttack;
 import com.epam.knight.model.ammunition.AbstractAmmunitionForProtection;
 import com.epam.knight.model.ammunition.Ammunition;
+import com.epam.knight.model.menu.ItemMenuFields;
 
 import java.util.Scanner;
 
 public class AmmunitionView {
-    public static final int MIN_MENU_OPTION = 1;
-    public static final int MAX_MENU_OPTION = 2;
-    public static final String STANDARD_FIELD = "1. Cost\n2. Weight\nChoose option:";
+    public static final String STANDARD_FIELD_FORMAT = "%d. %s\n%d. %s\nChoose option:";
     public static final String INCORRECT_INPUT = "Incorrect input.Try again:";
     public static final String CHOOSE_SORT_TYPE = "Choose sort type:";
     public static final String CHOOSE_SEARCH_FIELD = "Choose search field:";
@@ -17,6 +16,9 @@ public class AmmunitionView {
     public static final String INPUT_MAXIMUM = "Input maximum ";
 
     private final Scanner scanner = new Scanner(System.in);
+    private final String standardField = String.format(STANDARD_FIELD_FORMAT,
+            ItemMenuFields.COST_MENU_POINT.getId(),ItemMenuFields.COST_MENU_POINT.getTextField(),
+            ItemMenuFields.WEIGHT_MENU_POINT.getId(),ItemMenuFields.WEIGHT_MENU_POINT.getTextField());
 
     public void printAmmunition(Ammunition item) {
         if (item != null) {
@@ -32,23 +34,25 @@ public class AmmunitionView {
 
     public void printSortMenu() {
         System.out.println(CHOOSE_SORT_TYPE);
-        System.out.println(STANDARD_FIELD);
+        System.out.println(standardField);
     }
 
     public int choiceOption() {
         int choice;
+        int minMenuOption = ItemMenuFields.COST_MENU_POINT.getId();
+        int maxMenuOption = ItemMenuFields.WEIGHT_MENU_POINT.getId();
         do {
             choice = scanner.nextInt();
-            if (choice < MIN_MENU_OPTION || choice > MAX_MENU_OPTION) {
+            if (choice < minMenuOption || choice > maxMenuOption) {
                 System.out.println(INCORRECT_INPUT);
             }
-        } while (choice < MIN_MENU_OPTION || choice > MAX_MENU_OPTION);
+        } while (choice < minMenuOption || choice > maxMenuOption);
         return choice;
     }
 
     public void printSearchMenu() {
         System.out.println(CHOOSE_SEARCH_FIELD);
-        System.out.println(STANDARD_FIELD);
+        System.out.println(standardField);
     }
 
     public void printInputMin(String field) {
