@@ -13,6 +13,6 @@ public class Helmet extends AbstractAmmunitionForProtection {
 
     @Override
     public String toString() {
-        return String.format(HELMET_TO_STRING, this.getProtection(),this.getWeight(),this.getCost());
+        return String.format(HELMET_TO_STRING, this.getProtection(), this.getWeight(), this.getCost());
     }
 }

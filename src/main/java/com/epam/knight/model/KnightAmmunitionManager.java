@@ -27,9 +27,9 @@ public class KnightAmmunitionManager {
 
     public int calculateAmmunitionWeight() {
         int sumWeight = 0;
-        for (Ammunition am : knight.getAmmunition()) {
-            if (am != null) {
-                sumWeight += am.getWeight();
+        if (knight.getAmmunition() != null) {
+            for (Ammunition ammunition : knight.getAmmunition()) {
+                sumWeight += ammunition.getWeight();
             }
         }
         return sumWeight;
@@ -37,9 +37,9 @@ public class KnightAmmunitionManager {
 
     public int calculateAmmunitionCost() {
         int sumCost = 0;
-        for (Ammunition am : knight.getAmmunition()) {
-            if (am != null) {
-                sumCost += am.getCost();
+        if (knight.getAmmunition() != null) {
+            for (Ammunition ammunition : knight.getAmmunition()) {
+                sumCost += ammunition.getCost();
             }
         }
         return sumCost;
@@ -47,9 +47,11 @@ public class KnightAmmunitionManager {
 
     public int calculateAmmunitionDamage() {
         int sumDamage = 0;
-        for (Ammunition am : knight.getAmmunition()) {
-            if (am instanceof AbstractAmmunitionForAttack) {
-                sumDamage = ((AbstractAmmunitionForAttack) am).getDamage();
+        if (knight.getAmmunition() != null) {
+            for (Ammunition am : knight.getAmmunition()) {
+                if (am instanceof AbstractAmmunitionForAttack) {
+                    sumDamage = ((AbstractAmmunitionForAttack) am).getDamage();
+                }
             }
         }
         return sumDamage;
@@ -57,41 +59,39 @@ public class KnightAmmunitionManager {
 
     public int calculateAmmunitionProtection() {
         int sumProtection = 0;
-        for (Ammunition am : knight.getAmmunition()) {
-            if (am instanceof AbstractAmmunitionForProtection) {
-                sumProtection = ((AbstractAmmunitionForProtection) am).getProtection();
+        if (knight.getAmmunition() != null) {
+            for (Ammunition am : knight.getAmmunition()) {
+                if (am instanceof AbstractAmmunitionForProtection) {
+                    sumProtection = ((AbstractAmmunitionForProtection) am).getProtection();
+                }
             }
         }
         return sumProtection;
     }
 
-    public void setKnightStats() {
-        knight.setCost(calculateAmmunitionCost());
-        knight.setWeight(calculateAmmunitionWeight());
-        knight.setDamage(calculateAmmunitionDamage());
-        knight.setProtection(calculateAmmunitionProtection());
-    }
-
     public void sortKnightAmmunition(Comparator<Ammunition> comparator) {
-        Ammunition[] copyItems = new Ammunition[knight.getAmmunitionCount()];
-        System.arraycopy(knight.getAmmunition(),0, copyItems, 0, copyItems.length);
-        Arrays.sort(copyItems, comparator);
-        knight.setAmmunition(copyItems);
-    }
-
-    public Ammunition searchWeightField(Ammunition item, int minRange, int maxRange) {
-        if (item != null && item.getWeight() >= minRange && item.getWeight() <= maxRange) {
-            return item;
-        } else {
-            return null;
+        if (knight.getAmmunition() != null) {
+            Arrays.sort(knight.getAmmunition(), comparator);
         }
     }
 
-    public Ammunition searchCostField(Ammunition item, int minRange, int maxRange) {
-        if (item != null && item.getCost() >= minRange && item.getCost() <= maxRange) {
-            return item;
+    public Ammunition searchWeightField(Ammunition ammunition, int minRange, int maxRange) {
+        Ammunition item;
+        if (ammunition.getWeight() >= minRange && ammunition.getWeight() <= maxRange) {
+            item = ammunition;
         } else {
-            return null;
+            item = null;
         }
+        return item;
+    }
+
+    public Ammunition searchCostField(Ammunition ammunition, int minRange, int maxRange) {
+        Ammunition item;
+        if (ammunition.getCost() >= minRange && ammunition.getCost() <= maxRange) {
+            item = ammunition;
+        } else {
+            item = null;
+        }
+        return item;
     }
 }

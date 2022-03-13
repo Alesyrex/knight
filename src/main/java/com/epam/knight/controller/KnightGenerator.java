@@ -9,6 +9,7 @@ public final class KnightGenerator {
 
     private KnightGenerator() {
     }
+
     /**
      * Use it to quickly generate knight
      *
@@ -17,5 +18,4 @@ public final class KnightGenerator {
     public static Knight generateKnight() {
         return new Knight();
     }
-
 }

@@ -13,6 +13,6 @@ public class Sword extends AbstractAmmunitionForAttack {
 
     @Override
     public String toString() {
-        return String.format(SWORD_TO_STRING, this.getDamage(),this.getWeight(),this.getCost());
+        return String.format(SWORD_TO_STRING, this.getDamage(), this.getWeight(), this.getCost());
     }
 }

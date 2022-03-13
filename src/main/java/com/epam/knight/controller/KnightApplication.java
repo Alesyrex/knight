@@ -16,10 +16,9 @@ public class KnightApplication {
         MainMenuView menu = new MainMenuView();
         KnightController controller = new KnightController();
         do {
-            menu.mainMenu();
-            controller.operationsKnight(menu.selectMainMenu());
+            menu.printMainMenu();
+            controller.selectOperationOnKnight(menu.selectMainMenu());
         } while (controller.isRun());
         menu.printBye();
     }
-
 }
