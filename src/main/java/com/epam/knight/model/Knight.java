@@ -9,10 +9,6 @@ public class Knight {
 
     private Ammunition[] ammunition;
 
-    public Knight() {
-
-    }
-
     public Ammunition[] getAmmunition() {
         return ammunition;
     }
