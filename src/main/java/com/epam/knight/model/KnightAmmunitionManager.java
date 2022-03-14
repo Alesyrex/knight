@@ -47,11 +47,10 @@ public class KnightAmmunitionManager {
 
     public int calculateAmmunitionDamage() {
         int sumDamage = 0;
-        if (knight.getAmmunition() != null) {
-            for (Ammunition am : knight.getAmmunition()) {
-                if (am instanceof AbstractAmmunitionForAttack) {
-                    sumDamage = ((AbstractAmmunitionForAttack) am).getDamage();
-                }
+
+        for (Ammunition am : knight.getAmmunition()) {
+            if (am instanceof AbstractAmmunitionForAttack) {
+                sumDamage += ((AbstractAmmunitionForAttack) am).getDamage();
             }
         }
         return sumDamage;
@@ -59,38 +58,31 @@ public class KnightAmmunitionManager {
 
     public int calculateAmmunitionProtection() {
         int sumProtection = 0;
-        if (knight.getAmmunition() != null) {
-            for (Ammunition am : knight.getAmmunition()) {
-                if (am instanceof AbstractAmmunitionForProtection) {
-                    sumProtection = ((AbstractAmmunitionForProtection) am).getProtection();
-                }
+
+        for (Ammunition am : knight.getAmmunition()) {
+            if (am instanceof AbstractAmmunitionForProtection) {
+                sumProtection += ((AbstractAmmunitionForProtection) am).getProtection();
             }
         }
         return sumProtection;
     }
 
     public void sortKnightAmmunition(Comparator<Ammunition> comparator) {
-        if (knight.getAmmunition() != null) {
-            Arrays.sort(knight.getAmmunition(), comparator);
-        }
+        Arrays.sort(knight.getAmmunition(), comparator);
     }
 
     public Ammunition searchWeightField(Ammunition ammunition, int minRange, int maxRange) {
-        Ammunition item;
+        Ammunition item = null;
         if (ammunition.getWeight() >= minRange && ammunition.getWeight() <= maxRange) {
             item = ammunition;
-        } else {
-            item = null;
         }
         return item;
     }
 
     public Ammunition searchCostField(Ammunition ammunition, int minRange, int maxRange) {
-        Ammunition item;
+        Ammunition item = null;
         if (ammunition.getCost() >= minRange && ammunition.getCost() <= maxRange) {
             item = ammunition;
-        } else {
-            item = null;
         }
         return item;
     }

@@ -8,14 +8,17 @@ public class EquipView {
     public static final String INPUT_STATS_FORMAT = "Input %s %s:";
     public static final String INCORRECT_INPUT = "Incorrect input.Try again:";
     public static final String EQUIP_MENU = "What kind of ammunition do you want to equip?\n" +
-                                             "%d. %s\n%d. %s\nChoose option:";
-
+            "%d. %s\n%d. %s\nChoose option:";
     private final ConsoleView consoleView = new ConsoleView();
+    private final String equipMenu;
+
+    public EquipView() {
+        this.equipMenu = String.format(EQUIP_MENU,
+                AmmunitionType.SWORD.getId(), AmmunitionType.SWORD.getName(),
+                AmmunitionType.HELMET.getId(), AmmunitionType.HELMET.getName());
+    }
 
     public void printEquipMenu() {
-        String equipMenu = String.format(EQUIP_MENU,
-                AmmunitionType.SWORD.getId(),AmmunitionType.SWORD.getName(),
-                AmmunitionType.HELMET.getId(),AmmunitionType.HELMET.getName());
         consoleView.print(equipMenu);
     }
 

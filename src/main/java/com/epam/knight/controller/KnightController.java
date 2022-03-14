@@ -29,7 +29,6 @@ public class KnightController {
     private boolean run = true;
 
     public void selectOperationOnKnight(int choice) {
-
         if (choice == MainMenuFields.KNIGHT_STATS_MENU_POINT.getId()) {
             showKnightStats();
         } else if (choice == MainMenuFields.SHOW_ITEM_MENU_POINT.getId()) {
@@ -52,15 +51,12 @@ public class KnightController {
     }
 
     public void showAmmunition() {
-        if (knight.getAmmunition() != null) {
-            for (Ammunition item : knight.getAmmunition()) {
-                ammunitionView.printAmmunition(item);
-            }
+        for (Ammunition item : knight.getAmmunition()) {
+            ammunitionView.printAmmunition(item);
         }
     }
 
     public void equipAmmunition() {
-
         Ammunition item;
         equipView.printEquipMenu();
         if (equipView.selectEquipMenu() == AmmunitionType.SWORD.getId()) {
@@ -106,16 +102,16 @@ public class KnightController {
             maxRange = minRange;
             minRange = temp;
         }
-        if (knight.getAmmunition() != null) {
-            for (Ammunition item : knight.getAmmunition()) {
-                if (field == ItemMenuFields.COST_MENU_POINT) {
-                    ammunitionView.printAmmunition(manager.searchCostField(item, minRange, maxRange));
-                }
-                if (field == ItemMenuFields.WEIGHT_MENU_POINT) {
-                    ammunitionView.printAmmunition(manager.searchWeightField(item, minRange, maxRange));
-                }
+
+        for (Ammunition item : knight.getAmmunition()) {
+            if (field == ItemMenuFields.COST_MENU_POINT) {
+                ammunitionView.printAmmunition(manager.searchCostField(item, minRange, maxRange));
+            }
+            if (field == ItemMenuFields.WEIGHT_MENU_POINT) {
+                ammunitionView.printAmmunition(manager.searchWeightField(item, minRange, maxRange));
             }
         }
+
     }
 
     public void exitProgram() {

@@ -12,9 +12,10 @@ public class AmmunitionGenerator {
     public static final int INDEX_WEIGHT = 0;
     public static final int INDEX_COST = 1;
     public static final int INDEX_DAMAGE_OR_PROTECTION = 2;
-    private Ammunition item;
+
 
     public Ammunition generateAmmunition(AmmunitionType type, int[] stats) {
+        Ammunition item;
         switch (type) {
             case SWORD:
                 item = new Sword(stats[INDEX_DAMAGE_OR_PROTECTION], stats[INDEX_WEIGHT], stats[INDEX_COST]);
@@ -23,6 +24,7 @@ public class AmmunitionGenerator {
                 item = new Helmet(stats[INDEX_DAMAGE_OR_PROTECTION], stats[INDEX_WEIGHT], stats[INDEX_COST]);
                 break;
             default:
+                item = null;
                 break;
         }
         return item;

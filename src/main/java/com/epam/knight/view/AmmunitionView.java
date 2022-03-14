@@ -13,18 +13,25 @@ public class AmmunitionView {
 
     private final ConsoleView consoleView = new ConsoleView();
 
-    private final String standardField = String.format(STANDARD_FIELD_FORMAT,
-            ItemMenuFields.COST_MENU_POINT.getId(),ItemMenuFields.COST_MENU_POINT.getTextField(),
-            ItemMenuFields.WEIGHT_MENU_POINT.getId(),ItemMenuFields.WEIGHT_MENU_POINT.getTextField());
+    private final String sortMenu;
+    private final String searchMenu;
+
+    public AmmunitionView() {
+        String standardField = String.format(STANDARD_FIELD_FORMAT,
+                ItemMenuFields.COST_MENU_POINT.getId(), ItemMenuFields.COST_MENU_POINT.getTextField(),
+                ItemMenuFields.WEIGHT_MENU_POINT.getId(), ItemMenuFields.WEIGHT_MENU_POINT.getTextField());
+        this.sortMenu = CHOOSE_SORT_TYPE + standardField;
+        this.searchMenu = CHOOSE_SEARCH_FIELD + standardField;
+    }
 
     public void printAmmunition(Ammunition item) {
+        // У меня searchCostField и searchWeightField в KnightAmmunitionManager могут вернуть null;
         if (item != null) {
             consoleView.print(item.toString());
         }
     }
 
     public void printSortMenu() {
-        String sortMenu = CHOOSE_SORT_TYPE + standardField;
         consoleView.print(sortMenu);
     }
 
@@ -42,7 +49,6 @@ public class AmmunitionView {
     }
 
     public void printSearchMenu() {
-        String searchMenu = CHOOSE_SEARCH_FIELD + standardField;
         consoleView.print(searchMenu);
     }
 

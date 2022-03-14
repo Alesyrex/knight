@@ -5,11 +5,11 @@ public abstract class AbstractAmmunitionForProtection implements Ammunition {
     private int weight;
     private int cost;
 
-    public AbstractAmmunitionForProtection() {
+    protected AbstractAmmunitionForProtection() {
 
     }
 
-    public AbstractAmmunitionForProtection(int inProtection, int inWeight, int inCost) {
+    protected AbstractAmmunitionForProtection(int inProtection, int inWeight, int inCost) {
         protection = inProtection;
         weight = inWeight;
         cost = inCost;
